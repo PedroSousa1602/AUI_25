@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="form.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="submit_post" method="post">
+        
+        <label for="title">Título da Publicação:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="content">Conteúdo da Publicação:</label><br>
+        <textarea id="content" name="content" required></textarea><br><br>
+
+        <label for="imageUpload"> Clique aqui para enviar uma imagem </label>
+        <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;">
+        <button type="submit">Enviar</button>
+
+        <input type="submit" value="Publicar">
+</body>
+</html>

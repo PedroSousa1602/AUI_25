@@ -12,7 +12,7 @@ form {
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.252);
     max-width: 400px;
-    background-color: #45a04927;
+    background-color: rgba(255, 255, 255, 0.672);
 }
 
 input[type="text"], textarea {
@@ -30,7 +30,7 @@ textarea {
 }
 
 textarea:focus, input[type="text"]:focus {
-    border-color: #4CAF50;
+    border-color: #59f55e;
     outline: none;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
@@ -47,4 +47,28 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #45a049;
     box-shadow: 4px 4px #45a04969;
+}
+
+/* Esconde o input de arquivo */
+input[type="file"] {
+    display: none;
+}
+
+
+label[for="imageUpload"] {
+    display: inline-block;
+    padding: 5px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Efeito ao passar o mouse */
+label[for="imageUpload"]:hover {
+    border-color: #888;
+    background-color: #f9f9f9;
 }
