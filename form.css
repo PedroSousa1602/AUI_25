@@ -41,8 +41,8 @@ input[type="file"] {
 label[for="imageUpload"] {
     display: inline-block;
     padding: 5px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     text-align: center;
     cursor: pointer;
     transition: border-color 0.3s, background-color 0.3s;
@@ -65,6 +65,14 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
-    box-shadow: 4px 4px #45a04969;
+    background-color: #3a9e3f;
+}
+
+#image-preview {
+    max-width: 300px; /* Define um tamanho máximo para a imagem /
+    max-height: 300px;
+    margin-top: 15px; / Adiciona algum espaço acima da imagem */
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
 }
