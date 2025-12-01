@@ -14,27 +14,30 @@ header {
 }
 
 a.button {
-    padding: 2px 6px;
+    padding: 5px;
     border-radius: 5px;
     color: white;
     font-weight: bold;
     text-decoration: none;
 }
-
 .newPost {
-    margin: 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 5px; 
-    background-color: #45a049;
-    color: white;
-    text-decoration: none;
-}
-
-.newpost:hover {
-    background-color: #45a049a9;
-    color: white;
+    
+        .button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #45a049;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+    }
+        .button:hover {
+        background-color: #337736;
+        color: white;
+    }
 }
