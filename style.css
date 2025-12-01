@@ -14,27 +14,27 @@ header {
 }
 
 a.button {
-    padding: 2px 6px;
+    padding: 5px;
     border-radius: 5px;
     color: white;
     font-weight: bold;
     text-decoration: none;
 }
-
 .newPost {
-    margin: 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 5px; 
-    background-color: #45a049;
-    color: white;
-    text-decoration: none;
-}
-
-.newpost:hover {
-    background-color: #45a049a9;
-    color: white;
+    
+        .button {
+        margin: 15px;
+        display: flex;
+        width: 40px;
+        align-items: center;
+        flex-direction: column;
+        padding: 5px;
+        border-radius: 15px; 
+        background-color: #45a049;
+        color: white;
+    }
+        .button:hover {
+        background-color: #337736;
+        color: white;
+    }
 }
