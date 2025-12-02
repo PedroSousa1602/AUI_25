@@ -61,17 +61,10 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
+    left: 185px;
 }
 
 input[type="submit"]:hover {
     background-color: #3a9e3f;
-}
-
-#image-preview {
-    max-width: 300px; /* Define um tamanho máximo para a imagem /
-    max-height: 300px;
-    margin-top: 15px; / Adiciona algum espaço acima da imagem */
-    border: 1px solid #ddd;
-    padding: 5px;
-    border-radius: 5px;
 }
