@@ -1,14 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #c4fdc6;
 }
+
 
 form {
     background-color: #ffffff;
     padding: 20px;
-    margin: 20px auto;
+    margin: auto;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.252);
     max-width: 400px;
