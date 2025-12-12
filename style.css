@@ -69,3 +69,42 @@ a.button {
 .semPost .icon {
     font-size: 50px;
 }
+
+.Post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid #9ef080;
+    padding: 60px;
+    margin: 60px auto;
+    max-width: 400px;
+    color: #555;
+    background-color: rgb(146, 219, 175);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 0px;
+    position: relative; 
+    top: -60px;
+    right: 45%;
+}
+
+.caixa {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid #333;
+    background-color: #f0f0f062;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+    margin-bottom: 20px;
+}
+
+.conteudo {
+    text-align: left;
+    width: 100%;
+
+}
