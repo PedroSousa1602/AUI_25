@@ -164,7 +164,7 @@ h1 {
 ::-webkit-scrollbar-thumb {
     background: var(--green-400);
     border-radius: 10px;
-    border: 2px solid var(--green-100);
+    border: 1px solid var(--green-100);
 }
 
 ::-webkit-scrollbar-thumb:hover {
