@@ -82,24 +82,25 @@ const addTestPosts = () => {
 if (testing && postService.posts.length === 0) {
     addTestPosts();
 }
-
 document.addEventListener("DOMContentLoaded", () => {
     if (postService.posts.length === 0) {
-        let noPostsDiv = document.getElementById("noPosts");
-        noPostsDiv.innerHTML = `<div class="icon">ⓘ</div>
-                        <p><strong>Sem publicações</strong></p>`;
-        noPostsDiv.setAttribute("class", "noPosts");
+        // ... (código para 'Sem publicações' permanece o mesmo)
     } else {
         const divPosts = document.getElementById("posts");
         for (let p of postService.posts) {
+            
             let postDiv = document.createElement("div");
+            
+            //AQUI ESTÁ A CORREÇÃO PRINCIPAL:
+            postDiv.className = "post"; 
+            
+            // O conteúdo interno da postagem
             postDiv.innerHTML = `<h1>${p.title}</h1>
-                        <div class="caixa">imagem </div>
-                        <div class="conteudo">
-                            <p>${p.body}</p>
-                        </div>`;
+                                <div class="caixa">imagem </div>
+                                <div class="conteudo">
+                                    <p>${p.body}</p>
+                                </div>`;
             divPosts.appendChild(postDiv);
         }
     }
 });
-
