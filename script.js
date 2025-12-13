@@ -6,7 +6,7 @@ class Post {
     attachments;
 
     constructor(title, body, attachments) {
-        ++this.id;
+        this.id = ++Post.id;
         this.pubDate = new Date();
         this.title = title;
         this.body = body;
@@ -26,19 +26,16 @@ class PostService {
     posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     isPostDtoValid(postDto) {
-        let isTitleNull = String.IsNullOrEmpty(postDto.title);
-        let isBodyNull = String.IsNullOrEmpty(postDto.body);
-
-        if (isTitleNull && isBodyNull) {
+        if (!(postDto.title && postDto.body)) {
             console.log("Post's title and body cannot be empty.");
         }
-        else if (isTitleNull) {
+        else if (!postDto.title) {
             console.log("Post title cannot be empty.");
         }
-        else if (isBodyNull) {
+        else if (!postDto.body) {
             console.log("Post body cannot be empty.");
         }
-        return !(isTitleNull || isBodyNull);
+        return (postDto.title && postDto.body);
     };
 
     createPost(postDto) {
@@ -53,12 +50,32 @@ class PostService {
 
 const postService = new PostService();
 
+//! remove after creating post logic is complete
+const postTest = {
+    title: "Meu primeiro post",
+    body: "Este é o conteúdo do meu primeiro post.",
+    attachments: null
+};
+postService.createPost(postTest);
+//! end remove
+
 document.addEventListener("DOMContentLoaded", () => {
     if (postService.posts.length == 0) {
-        let noPostsDiv = document.getElementsByClassName("noPosts")[0];
-        noPostsDiv.setAttribute("style", "display: flex;");
+        let noPostsDiv = document.getElementById("noPosts");
+        noPostsDiv.innerHTML = `<div class="icon">ⓘ</div>
+                        <p><strong>Sem publicações</strong></p>`;
+        noPostsDiv.setAttribute("class", "noPosts");
     } else {
-        // todo: render posts
+        const divPosts = document.getElementById("posts");
+        for (let p of postService.posts) {
+            let postDiv = document.createElement("div");
+            postDiv.innerHTML = `<h1>${p.title}</h1>
+                        <div class="caixa">imagem </div>
+                        <div class="conteudo">
+                            <p>${p.body}</p>
+                        </div>`;
+            divPosts.appendChild(postDiv);
+        }
     }
 });
 

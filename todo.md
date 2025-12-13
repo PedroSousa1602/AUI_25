@@ -1,0 +1,2 @@
+- [ ] Post creation must be a popup window
+- [ ] Post must show how long ago the publication was done
