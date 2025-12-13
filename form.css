@@ -1,45 +1,45 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #c4fdc6;
+    background-color: #e8f9e8; 
 }
 
-
 form {
-    background-color: #ffffff;
-    padding: 20px;
-    margin: auto;
+    background-color: rgba(255, 255, 255, 0.795); 
+    padding: 25px; 
+    margin: 40px auto; 
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.252);
-    max-width: 400px;
-    background-color: rgba(255, 255, 255, 0.672);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); 
+    max-width: 450px; 
 }
 
 input[type="text"], textarea {
     width: 100%; 
-    padding: 10px;
-    margin: 10px 0; 
+    padding: 12px; 
+    margin: 10px 0 20px 0; 
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 textarea {
-    height: 100px;
+    height: 120px; 
     resize: vertical;
 }
 
 textarea:focus, input[type="text"]:focus {
-    border-color: #59f55e;
+    border-color: #59f55e; 
     outline: none;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); 
 }
+
 input[type="file"] {
     display: none;
 }
 
 label[for="imageUpload"] {
     display: inline-block;
-    padding: 5px;
+    padding: 8px 15px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
@@ -47,6 +47,7 @@ label[for="imageUpload"] {
     transition: border-color 0.3s, background-color 0.3s;
     color: #666;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 label[for="imageUpload"]:hover {
@@ -61,7 +62,7 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: relative;
+    position: relative; 
     left: 185px;
 }
 
