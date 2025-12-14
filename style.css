@@ -10,6 +10,7 @@
     --text-muted: #444; 
     --bg-light: #e8f9e8; 
     --post-bg: #ffffff; 
+    --post-bgh: rgb(247, 247, 247); 
 }
 
 body {
@@ -107,19 +108,17 @@ a.button {
 .post {
     display: flex;
     flex-direction: column;
-    max-width: 450px;
-    margin: 0 auto 40px auto; 
+    max-width: 600px;
+    margin: 0 auto 5px auto; 
     padding: 30px;
     background-color: var(--post-bg); 
     border-radius: 10px;
     border: none; 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+
 }
 
 .post:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+    background-color: var(--post-bgh); 
 }
 
 /* Títulos */
