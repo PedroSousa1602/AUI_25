@@ -50,8 +50,10 @@ class PostService {
 
 const postService = new PostService();
 
-//! code to test
-const testing = true;
+//! test code
+
+// change variable to false to disable test data
+const TESTING = true;
 // mock data
 const addTestPosts = () => {
     const p1 = {
@@ -77,24 +79,24 @@ const addTestPosts = () => {
     postService.createPost(p3);
 }
 
-//! end test code
-
-if (testing && postService.posts.length === 0) {
+if (TESTING && postService.posts.length === 0) {
     addTestPosts();
 }
+
+//! end test code
+
 document.addEventListener("DOMContentLoaded", () => {
     if (postService.posts.length === 0) {
-        // ... (código para 'Sem publicações' permanece o mesmo)
+        let noPostsDiv = document.getElementById("noPosts");
+        noPostsDiv.innerHTML = `<div class="icon">ⓘ</div>
+                        <p><strong>Sem publicações</strong></p>`;
+        noPostsDiv.setAttribute("class", "noPosts");
     } else {
         const divPosts = document.getElementById("posts");
         for (let p of postService.posts) {
-            
+
             let postDiv = document.createElement("div");
-            
-            //AQUI ESTÁ A CORREÇÃO PRINCIPAL:
-            postDiv.className = "post"; 
-            
-            // O conteúdo interno da postagem
+            postDiv.setAttribute("class", "post");
             postDiv.innerHTML = `<h1>${p.title}</h1>
                                 <div class="caixa">imagem </div>
                                 <div class="conteudo">
