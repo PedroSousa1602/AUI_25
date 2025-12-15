@@ -14,8 +14,16 @@
     <header>
         Blog Pessoal
         <div class="search">
-            <input type="search" placeholder="Procurar Post..." id="site-search" name="q" />
-            <button>Procurar</button>
+        <form action="/index.html" method="GET">
+            <label for="site-search" class="sr-only"></label>
+            <input 
+                type="search" 
+                placeholder="Procurar Post..." 
+                id="site-search" 
+                name="q" 
+            />
+            <button type="submit"></button>
+        </form>
         </div>
     </header>
 

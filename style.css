@@ -142,6 +142,44 @@ h1 {
     background: radial-gradient(circle, rgba(42,123,155,1) 19%, rgba(87,199,133,1) 60%, rgba(237,221,83,1) 100%);
 }
 
+.search {
+    position: absolute;
+    right: 50px;
+    top: 15px;
+
+        button {
+            margin-left: 0px;
+            padding: 5px;
+            transform: translateY(-1px);
+            border: none;
+            border-radius: 5px;
+            background-color: var(--green-400);
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: var(--green-600);
+        }
+        button::before {
+        content: "";
+        width: 20px; 
+        height: 20px; 
+        display: inline-block; 
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' fill='%23fff'/></svg>") center / contain no-repeat;
+        vertical-align: middle; 
+        }
+        input[type="search"] {
+            padding: 6px 10px;  
+            border: none;
+            border-radius: 5px;
+            background-color: var(--bg-light);
+            font-size: 14px;
+        }    
+        input[type="search"]:focus {
+            outline: none;
+        }
+}
+
 /* Conteúdo */
 .conteudo {
     width: 100%;
