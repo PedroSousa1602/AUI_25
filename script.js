@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let postDiv = document.createElement("div");
             postDiv.setAttribute("class", "post");
+            //todo: refazer este inner HTML para ficar em código javascript
             postDiv.innerHTML = `<h1>${p.title}</h1>
                                 <div class="caixa">imagem </div>
                                 <div class="conteudo">

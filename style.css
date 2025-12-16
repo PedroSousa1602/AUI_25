@@ -11,6 +11,11 @@
     --bg-light: #e8f9e8; 
     --post-bg: #ffffff; 
     --post-bgh: rgb(247, 247, 247); 
+    --modal-duration: 1s;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -19,6 +24,7 @@ body {
     background-color: var(--bg-light); 
     color: var(--text-dark);
     padding-top: 80px; 
+    transition: transform 0.3s ease;
 }
 
 /* HEADER */
@@ -52,8 +58,8 @@ header::after {
 }
 
 /* BOTÕES */
-a.button,
-.newPost .button {
+a.create-post-btn,
+.newPost .create-post-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -67,18 +73,18 @@ a.button,
     cursor: pointer;
 }
 
-a.button:hover,
-.newPost .button:hover {
+a.create-post-btn:hover,
+.newPost .create-post-btn:hover {
     background: var(--green-600);
 }
 
-.newPost .button {
+.newPost .create-post-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
 }
 
-.newPost .button::before {
+.newPost .create-post-btn::before {
     content: "";
     width: 20px;
     height: 20px;
@@ -123,7 +129,7 @@ a.button:hover,
 }
 
 /* Títulos */
-h1 {
+.post h1 {
     width: 100%;
     margin: 0 0 15px;
     font-size: 28px;
