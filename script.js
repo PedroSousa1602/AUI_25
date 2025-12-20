@@ -1,12 +1,12 @@
 class Post {
-    static id = 0;
+    id;
     pubDate;
     title;
     body;
     attachments;
 
-    constructor(title, body, attachments) {
-        this.id = ++Post.id;
+    constructor(id, title, body, attachments) {
+        this.id = id;
         this.pubDate = new Date();
         this.title = title;
         this.body = body;
@@ -23,7 +23,7 @@ class Post {
 }
 
 class PostService {
-    posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts = JSON.parse(localStorage.getItem("posts-list")) || [];
 
     isPostDtoValid(postDto) {
         if (!(postDto.title && postDto.body)) {
@@ -40,9 +40,10 @@ class PostService {
 
     createPost(postDto) {
         if (this.isPostDtoValid(postDto)) {
-            const newPost = new Post(postDto.title, postDto.body, postDto.attachments);
+            this.posts.length === 0 ? postDto.id = 1 : postDto.id = this.posts.at(-1).id + 1;
+            const newPost = new Post(postDto.id, postDto.title, postDto.body, postDto.attachments);
             this.posts.push(newPost);
-            localStorage.setItem("posts", JSON.stringify(this.posts));
+            localStorage.setItem("posts-list", JSON.stringify(this.posts));
             console.log("Post created successfully.\n", newPost);
         }
     }
@@ -85,14 +86,14 @@ if (TESTING && postService.posts.length === 0) {
 
 //! end test code
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => document.addEventListener("DOMContentLoaded", () => {
     if (postService.posts.length === 0) {
         let noPostsDiv = document.getElementById("noPosts");
         noPostsDiv.innerHTML = `<div class="icon">ⓘ</div>
                         <p><strong>Sem publicações</strong></p>`;
         noPostsDiv.setAttribute("class", "noPosts");
     } else {
-        const divPosts = document.getElementById("posts");
+        const divPosts = document.getElementById("posts-list");
         for (let p of postService.posts) {
 
             let postDiv = document.createElement("div");
@@ -106,4 +107,32 @@ document.addEventListener("DOMContentLoaded", () => {
             divPosts.appendChild(postDiv);
         }
     }
-});
+}))();
+
+const showModal = () => {
+    const modal = document.getElementById("modal");
+    modal.classList.add("show-modal");
+}
+
+const closeModal = () => {
+    const modal = document.getElementById("modal");
+    modal.classList.remove("show-modal");
+}
+
+window.addEventListener("click", e => (e.target === modal ? modal.classList.remove("show-modal") : false));
+
+const handleCreatePostFormSubmit = (event) => {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+
+    const postDto = {
+        title: data.get("title"),
+        body: data.get("content"),
+        attachments: null
+    };
+
+    postService.createPost(postDto);
+    closeModal();
+    window.location.reload();
+}

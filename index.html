@@ -23,19 +23,17 @@
         </div>
     </header>
 
-    <div id="noPosts"></div>
-    <div id="posts"></div>
+    <div id="no-posts"></div>
+    <div id="posts-list"></div>
 
-    <div class="newPost">
-        <a class="create-post-btn">Criar publicação</a>
-    </div>
+    <button class="create-post-btn" onclick="showModal()">Criar publicação</button>
 
     <div class="modal-container" id="modal">
         <div class="modal">
-            <button class="close-btn" id="close">X</button>
+            <button class="close-btn" onclick="closeModal()">X</button>
             <div class="modal-content">
                 <h1 class="modal-title">Nova Publicação</h1>
-                <form class="modal-form">
+                <form class="modal-form" id="post-modal" onsubmit="handleCreatePostFormSubmit(event)">
                     <div>
                         <label for="title">Título da publicação</label><br>
                         <input type="text" id="title" name="title" class="form-input" required>

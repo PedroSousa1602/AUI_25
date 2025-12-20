@@ -58,13 +58,13 @@ header::after {
 }
 
 /* BOTÕES */
-a.create-post-btn,
-.newPost .create-post-btn {
+.create-post-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 22px;
     border-radius: 999px;
+    border: none;
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
@@ -73,18 +73,17 @@ a.create-post-btn,
     cursor: pointer;
 }
 
-a.create-post-btn:hover,
-.newPost .create-post-btn:hover {
+.create-post-btn:hover{
     background: var(--green-600);
 }
 
-.newPost .create-post-btn {
+.create-post-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
 }
 
-.newPost .create-post-btn::before {
+.create-post-btn::before {
     content: "";
     width: 20px;
     height: 20px;
@@ -92,7 +91,7 @@ a.create-post-btn:hover,
 }
 
 /* SEM POSTS */
-.noPosts {
+.no-posts {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,7 +106,7 @@ a.create-post-btn:hover,
     color: var(--text-muted);
 }
 
-.noPosts .icon {
+.no-posts .icon {
     font-size: 50px;
 }
 

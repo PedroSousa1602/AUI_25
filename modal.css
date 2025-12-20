@@ -1,6 +1,6 @@
 .modal-container {
     background-color: rgba(0, 0, 0, .6);
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -45,17 +45,6 @@
     border: 1px solid #ccc;
 }
 
-.textarea-container textarea {
-    width: 100%;
-    height: 120px;
-    resize: vertical;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    line-height: 1.3; 
-    padding: 8px; 
-}
-
-
 .modal-form textarea:focus, .modal-form input:focus {
     outline: none;
     border-style: solid;
@@ -92,5 +81,16 @@
 /* JavaScript */
 .modal-container.show-modal {
     display: block;
+}
+
+
+textarea {
+    width: 100%;
+    height: 120px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    line-height: 1.3; 
+    padding: 8px; 
 }
 
