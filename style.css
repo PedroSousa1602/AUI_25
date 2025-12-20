@@ -8,8 +8,9 @@
     --green-700: #2e6f36;
     --text-dark: #333;
     --text-muted: #444; 
-    --bg-light: #e8f9e8; 
+    --bg-light: #f0f8f0; 
     --post-bg: #ffffff;
+    --edit: #86abfa;
 }
 
 * {
@@ -35,25 +36,15 @@ header {
     background: var(--green-500);
     color: #fff;
     padding: 15px 20px;
-    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 26px;
     font-weight: 600;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 50px 50px; /* cantos inferiores arredondados */
 }
 
-
-header::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--green-700);
-}
 
 /* BOTÕES */
 .create-post-btn {
@@ -111,37 +102,49 @@ header::after {
     background-color: var(--post-bg); 
     border-radius: 10px;
     border: none;
-  
+
+}
+
+.post:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho do post: título + botões */
+.post-header {
+    display: flex;
+    justify-content: space-between; /* título à esquerda, botões à direita */
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post h1 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--text-muted);
+    text-align: left;
 }
 
 .post-actions {
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
-    margin-bottom: 10px;
 }
 
 .edit-btn, .delete-btn {
     background: transparent;
     border: none;
-    padding: 6px 12px;
-    color: var(--green-500);
+    padding: 4px 10px;
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
     transform: translateX(20px);
 }
 
-.edit-btn:hover {
-    background-color: var(--green-100);
-}
-
 .edit-btn::before {
     content: "";
     display: inline-block;
     width: 16px;
-    height: 16px;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z' fill='%234CAF50'/></svg>") center / contain no-repeat;
+    height: 16px; 
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z' fill='%231583FF'/></svg>") center / contain no-repeat;
 }
 
 .delete-btn::before {
@@ -150,21 +153,6 @@ header::after {
     width: 16px;
     height: 16px;
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 6h18v2H3V6zm2 3h14l-1.5 12.5c-.1.8-.8 1.5-1.6 1.5H8.1c-.8 0-1.5-.7-1.6-1.5L5 9zm5 2v9h2v-9H10zm4 0v9h2v-9h-2zM9 4V3h6v1h5v2H4V4h5z' fill='%23f44336'/></svg>") center / contain no-repeat;
-}
-
-.delete-btn:hover {
-    background-color: #ffe6e6;
-    width: auto;
-}
-
-
-/* Títulos */
-.post h1 {
-    width: 100%;
-    margin: 0 0 15px;
-    font-size: 28px;
-    color: var(--text-muted); 
-    text-align: left;
 }
 
 /* Imagens */
