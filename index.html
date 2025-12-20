@@ -31,12 +31,13 @@
     <div class="modal-container" id="modal">
         <div class="modal">
             <button class="close-btn" onclick="closeModal()">X</button>
-            <div class="modal-content">
+            <div>
                 <h1 class="modal-title">Nova Publicação</h1>
                 <form class="modal-form" id="post-modal" onsubmit="handleCreatePostFormSubmit(event)">
                     <div>
                         <label for="title">Título da publicação</label><br>
                         <input type="text" id="title" name="title" class="form-input" required>
+                        <br><br>
 
                         <label for="content">Conteúdo da publicação</label><br>
                         <div class="textarea-container"><textarea id="content" name="content" class="form-input" required></textarea></div>

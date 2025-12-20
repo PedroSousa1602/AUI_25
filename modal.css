@@ -1,3 +1,11 @@
+:root{
+    --modal-duration: 1s;
+}
+
+.modal-title {
+    margin: auto;
+}
+
 .modal-container {
     background-color: rgba(0, 0, 0, .6);
     display: none;
@@ -24,10 +32,6 @@
     margin-bottom: 30px;
 }
 
-.modal-content {
-    padding: 20px;
-}
-
 .modal-form div {
     margin: 10px 0;
 }
@@ -43,6 +47,7 @@
     padding: 8px;
     width: 100%;   
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .modal-form textarea:focus, .modal-form input:focus {
@@ -57,7 +62,7 @@
     border: none;
     font-size: 20px;
     position: absolute;
-    top: 5px;
+    top: 12px;
     right: 12px;
     cursor: pointer;
     color: #4CAF50;
@@ -77,6 +82,10 @@
     padding: 10px 30px;
 }
 
+.modal-container .submit-btn:hover {
+    background: #45a049;
+}
+
 
 /* JavaScript */
 .modal-container.show-modal {
@@ -85,8 +94,10 @@
 
 
 textarea {
+    transform: translateY(-7px);
     width: 100%;
-    height: 120px;
+    height: 80px;
+    max-height: 300px;
     resize: vertical;
     border: 1px solid #ccc;
     border-radius: 5px;
