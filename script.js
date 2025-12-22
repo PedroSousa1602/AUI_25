@@ -54,7 +54,7 @@ const postService = new PostService();
 //! test code
 
 // change variable to false to disable test data
-const TESTING = true;
+const TESTING = false;
 // mock data
 const addTestPosts = () => {
     const p1 = {
@@ -90,8 +90,7 @@ const showNoPostsBox = () => {
     let noPostsDiv = document.getElementById("no-posts");
     noPostsDiv.setAttribute("class", "no-posts");
     const iconDiv = document.createElement("div");
-    iconDiv.setAttribute("class", "icon");
-    iconDiv.textContent = "ⓘ";
+    iconDiv.setAttribute("class", "np-icon");
     noPostsDiv.appendChild(iconDiv);
     const noPublicationsMsg = document.createElement("p");
     noPublicationsMsg.textContent = "Ainda não há publicações.";
