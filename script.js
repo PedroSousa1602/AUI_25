@@ -47,6 +47,12 @@ class PostService {
             console.log("Post created successfully.\n", newPost);
         }
     }
+
+    deletePost(post) {
+        this.posts = this.posts.filter(p => p.id !== post.id);
+        localStorage.setItem("posts-list", JSON.stringify(this.posts));
+        console.log("Post deleted successfully.\n");
+    }
 }
 
 const postService = new PostService();
@@ -122,7 +128,12 @@ const renderPost = (post) => {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("class", "delete-btn");
-    deleteBtn.onclick = () => alert("Delete post feature coming soon!");
+    deleteBtn.onclick = () => {
+        if (confirm("Tem certeza que deseja deletar esta publicação?")) {
+            postService.deletePost(post);
+            window.location.reload();
+        }
+    }
 
     postActionsDiv.append(editBtn, deleteBtn);
     postHeaderDiv.append(title, postActionsDiv);
