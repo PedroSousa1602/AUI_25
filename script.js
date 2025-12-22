@@ -86,36 +86,71 @@ if (TESTING && postService.posts.length === 0) {
 
 //! end test code
 
+const showNoPostsBox = () => {
+    let noPostsDiv = document.getElementById("no-posts");
+    noPostsDiv.setAttribute("class", "no-posts");
+    const iconDiv = document.createElement("div");
+    iconDiv.setAttribute("class", "icon");
+    iconDiv.textContent = "ⓘ";
+    noPostsDiv.appendChild(iconDiv);
+    const noPublicationsMsg = document.createElement("p");
+    noPublicationsMsg.textContent = "Ainda não há publicações.";
+    noPostsDiv.appendChild(noPublicationsMsg);
+};
+
+const renderPost = (post) => {
+    const postListDiv = document.getElementById("posts-list");
+
+    let postDiv = document.createElement("div");
+    postDiv.setAttribute("class", "post");
+    postListDiv.appendChild(postDiv);
+
+    const postHeaderDiv = document.createElement("div");
+    postHeaderDiv.setAttribute("class", "post-header");
+    postDiv.appendChild(postHeaderDiv);
+
+    // post header - title
+    const title = document.createElement("h1");
+    title.textContent = post.title;
+
+    // post header - actions
+    const postActionsDiv = document.createElement("div");
+    postActionsDiv.setAttribute("class", "post-actions");
+
+    const editBtn = document.createElement("button");
+    editBtn.setAttribute("class", "edit-btn");
+    editBtn.onclick = () => alert("Edit post feature coming soon!");
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("class", "delete-btn");
+    deleteBtn.onclick = () => alert("Delete post feature coming soon!");
+
+    postActionsDiv.append(editBtn, deleteBtn);
+    postHeaderDiv.append(title, postActionsDiv);
+
+    // post's image (if any)
+    //todo: feature to upload attachments not implemented yet
+    if (post.attachments) {
+        const imgBoxDiv = document.createElement("div");
+        imgBoxDiv.setAttribute("class", "img-box");
+        postDiv.appendChild(imgBoxDiv);
+    }
+
+    // post content
+    const contentDiv = document.createElement("div");
+    contentDiv.setAttribute("class", "conteudo");
+    const contentParagraph = document.createElement("p");
+    contentDiv.appendChild(contentParagraph);
+    contentParagraph.textContent = post.body;
+    postDiv.appendChild(contentDiv);
+};
+
 (() => document.addEventListener("DOMContentLoaded", () => {
     if (postService.posts.length === 0) {
-        let noPostsDiv = document.getElementById("noPosts");
-        noPostsDiv.innerHTML = `<div class="icon">ⓘ</div>
-                        <p><strong>Sem publicações</strong></p>`;
-        noPostsDiv.setAttribute("class", "noPosts");
+        showNoPostsBox();
     } else {
-        const divPosts = document.getElementById("posts-list");
-        for (let p of postService.posts) {
-
-            let postDiv = document.createElement("div");
-            postDiv.setAttribute("class", "post");
-
-
-            const title = document.createElement("h1");
-            title.textContent = p.title;
-            postDiv.appendChild(title);
-
-            if (p.attachments) {
-                const imgBox = document.createElement("div");
-                imgBox.setAttribute("class", "img-box");
-                postDiv.appendChild(imgBox);
-            }
-
-            const conteudoDiv = document.createElement("div");
-            conteudoDiv.setAttribute("class", "conteudo");
-            conteudoDiv.innerHTML = `<p>${p.body}</p>`;
-            postDiv.appendChild(conteudoDiv);
-
-            divPosts.appendChild(postDiv);
+        for (let post of postService.posts) {
+            renderPost(post);
         }
     }
 }))();
