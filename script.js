@@ -57,41 +57,6 @@ class PostService {
 
 const postService = new PostService();
 
-//! test code
-
-// change variable to false to disable test data
-const TESTING = false;
-// mock data
-const addTestPosts = () => {
-    const p1 = {
-        title: "First Post",
-        body: "First post content.",
-        attachments: null
-    };
-
-    const p2 = {
-        title: "Second Post",
-        body: "Second post content.",
-        attachments: null
-    };
-
-    const p3 = {
-        title: "Third Post",
-        body: "Third post content.",
-        attachments: null
-    };
-
-    postService.createPost(p1);
-    postService.createPost(p2);
-    postService.createPost(p3);
-}
-
-if (TESTING && postService.posts.length === 0) {
-    addTestPosts();
-}
-
-//! end test code
-
 const showNoPostsBox = () => {
     let noPostsDiv = document.getElementById("no-posts");
     noPostsDiv.setAttribute("class", "no-posts");
@@ -128,12 +93,7 @@ const renderPost = (post) => {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("class", "delete-btn");
-    deleteBtn.onclick = () => {
-        if (confirm("Tem certeza que deseja deletar esta publicação?")) {
-            postService.deletePost(post);
-            window.location.reload();
-        }
-    }
+    deleteBtn.onclick = () => { handleDeletePostBtn(post); };
 
     postActionsDiv.append(editBtn, deleteBtn);
     postHeaderDiv.append(title, postActionsDiv);
@@ -155,15 +115,32 @@ const renderPost = (post) => {
     postDiv.appendChild(contentDiv);
 };
 
-(() => document.addEventListener("DOMContentLoaded", () => {
-    if (postService.posts.length === 0) {
-        showNoPostsBox();
-    } else {
-        for (let post of postService.posts) {
-            renderPost(post);
-        }
-    }
-}))();
+const handleCreatePostFormSubmit = (event) => {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+
+    const postDto = {
+        title: data.get("title"),
+        body: data.get("content"),
+        attachments: null
+    };
+
+    postService.createPost(postDto);
+    closeModal('create-post-modal');
+    window.location.reload();
+}
+
+const handleDeletePostBtn = (post) => {
+    showModal("delete-post-modal");
+
+    const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+    confirmDeleteBtn.onclick = () => {
+        postService.deletePost(post);
+        closeModal("delete-post-modal");
+        window.location.reload();
+    };
+}
 
 const showModal = (modalId) => {
     const modal = document.getElementById(modalId);
@@ -177,18 +154,47 @@ const closeModal = (modalId) => {
 
 window.addEventListener("click", e => (e.target.classList.contains("modal-container")) ? closeModal(e.target.id) : false);
 
-const handleCreatePostFormSubmit = (event) => {
-    event.preventDefault();
+(() => document.addEventListener("DOMContentLoaded", () => {
+    if (postService.posts.length === 0) {
+        showNoPostsBox();
+    } else {
+        for (let post of postService.posts) {
+            renderPost(post);
+        }
+    }
+}))();
 
-    const data = new FormData(event.target);
+//! test code
 
-    const postDto = {
-        title: data.get("title"),
-        body: data.get("content"),
+// change variable to false to disable test data
+const TESTING = false;
+// mock data
+const addTestPosts = () => {
+    const p1 = {
+        title: "First Post",
+        body: "First post content.",
         attachments: null
     };
 
-    postService.createPost(postDto);
-    closeModal();
-    window.location.reload();
+    const p2 = {
+        title: "Second Post",
+        body: "Second post content.",
+        attachments: null
+    };
+
+    const p3 = {
+        title: "Third Post",
+        body: "Third post content.",
+        attachments: null
+    };
+
+    postService.createPost(p1);
+    postService.createPost(p2);
+    postService.createPost(p3);
 }
+
+if (TESTING && postService.posts.length === 0) {
+    addTestPosts();
+}
+
+//! end test code

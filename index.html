@@ -40,13 +40,30 @@
                         <br><br>
 
                         <label for="content">Conteúdo da publicação</label><br>
-                        <div class="textarea-container"><textarea id="content" name="content" class="form-input" required></textarea></div>
+                        <div class="textarea-container"><textarea id="content" name="content" class="form-input"
+                                required></textarea></div>
                     </div>
                     <input type="submit" value="Criar publicação" class="submit-btn">
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- todo: style modal buttons -->
+    <div class="modal-container" id="delete-post-modal">
+        <div class="modal">
+            <button class="close-btn" onclick="closeModal('delete-post-modal')">X</button>
+            <div>
+                <h1 class="modal-title">Confirmar exclusão</h1>
+                <p>Tem certeza que deseja excluir esta publicação? Essa ação não pode ser desfeita.</p>
+                <button class="confirm-btn" id="confirm-delete-btn">Sim, excluir</button>
+                <button class="cancel-btn" onclick="closeModal('delete-post-modal')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    
+    
 </body>
 
 </html>

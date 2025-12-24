@@ -1,3 +1,4 @@
-- [ ] Post creation must be a popup window
+- [x] Post creation must be a popup window
 - [ ] Post must show how long ago the publication was done
 - [ ] Create script for search bar
+- [ ] Create confirmation feedback after post creation or deletion.

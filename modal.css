@@ -17,6 +17,11 @@
     z-index: 1000;
 }
 
+.modal-container.show-modal {
+    display: block;
+    animation: fadeIn var(--modal-duration) ease;
+}
+
 .modal {
     background-color: rgb(255, 255, 255); 
     padding: 25px; 
@@ -26,6 +31,7 @@
     max-width: 450px;
     transform: translatey(17%);
 }
+
 
 .modal h1 {
     text-align: center;
@@ -85,13 +91,6 @@
 .modal-container .submit-btn:hover {
     background: #45a049;
 }
-
-
-/* JavaScript */
-.modal-container.show-modal {
-    display: block;
-}
-
 
 textarea {
     transform: translateY(-7px);
