@@ -26,11 +26,11 @@
     <div id="no-posts"></div>
     <div id="posts-list"></div>
 
-    <button class="create-post-btn" onclick="showModal()">Criar publicação</button>
+    <button class="create-post-btn" onclick="showModal('create-post-modal')">Criar publicação</button>
 
-    <div class="modal-container" id="modal">
+    <div class="modal-container" id="create-post-modal">
         <div class="modal">
-            <button class="close-btn" onclick="closeModal()">X</button>
+            <button class="close-btn" onclick="closeModal('create-post-modal')">X</button>
             <div>
                 <h1 class="modal-title">Nova Publicação</h1>
                 <form class="modal-form" id="post-modal" onsubmit="handleCreatePostFormSubmit(event)">

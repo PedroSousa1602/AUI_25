@@ -165,17 +165,17 @@ const renderPost = (post) => {
     }
 }))();
 
-const showModal = () => {
-    const modal = document.getElementById("modal");
+const showModal = (modalId) => {
+    const modal = document.getElementById(modalId);
     modal.classList.add("show-modal");
 }
 
-const closeModal = () => {
-    const modal = document.getElementById("modal");
+const closeModal = (modalId) => {
+    const modal = document.getElementById(modalId);
     modal.classList.remove("show-modal");
 }
 
-window.addEventListener("click", e => (e.target === modal ? modal.classList.remove("show-modal") : false));
+window.addEventListener("click", e => (e.target.classList.contains("modal-container")) ? closeModal(e.target.id) : false);
 
 const handleCreatePostFormSubmit = (event) => {
     event.preventDefault();
