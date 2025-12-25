@@ -2,3 +2,6 @@
 - [ ] Post must show how long ago the publication was done
 - [ ] Create script for search bar
 - [ ] Create confirmation feedback after post creation or deletion.
+- [ ] Change icon color to green
+- [ ] Style post footer (post creation and update date/time)
+- [ ] 

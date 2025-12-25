@@ -19,8 +19,9 @@ class Post {
         return `Post ID: ${this.id}\n
             Title: ${this.title}\n
             Body: ${this.body}\n
-            ${this.attachments ? `Attachments: ${this.attachments}\n` : ''}\n
-            Published on: ${this.pubDate}`;
+            Published on: ${this.pubDate}\n
+            ${this.lastEdited ? `Last Edited: ${this.lastEdited}` : ''}\n
+            ${this.attachments ? `Attachments: ${this.attachments}\n` : ''}`;
     }
 }
 
@@ -132,6 +133,22 @@ const renderPost = (post) => {
     contentDiv.appendChild(contentParagraph);
     contentParagraph.textContent = post.body;
     postDiv.appendChild(contentDiv);
+
+    // post footer
+    // todo: style post-footer
+    const postFooterDiv = document.createElement("div");
+    postFooterDiv.setAttribute("class", "post-footer");
+    const pubDateSpan = document.createElement("span");
+    pubDateSpan.textContent = `Publicado em: ${new Date(post.pubDate).toLocaleDateString("pt-PT")} às ${new Date(post.pubDate).toLocaleTimeString("pt-PT", { hour: '2-digit', minute: '2-digit' })}`;
+    postFooterDiv.appendChild(pubDateSpan);
+
+    if (post.lastEdited) {
+        const lastEditedSpan = document.createElement("span");
+        lastEditedSpan.textContent = ` | Última edição: ${new Date(post.lastEdited).toLocaleDateString("pt-PT")} às ${new Date(post.lastEdited).toLocaleTimeString("pt-PT", { hour: '2-digit', minute: '2-digit' })}`;
+        postFooterDiv.appendChild(lastEditedSpan);
+    }
+
+    postDiv.appendChild(postFooterDiv);
 };
 
 const handleDeletePostBtn = (post) => {
@@ -162,7 +179,6 @@ const handleCreatePostFormSubmit = (event) => {
 
 const handleEditPostBtn = (post) => {
     showModal("edit-post-modal");
-
     const form = document.getElementById("post-edit-modal");
     form.id.value = post.id;
     form.title.value = post.title;
@@ -183,7 +199,6 @@ const handleEditPostFormSubmit = (event) => {
     window.location.reload();
 }
 
-
 const showModal = (modalId) => {
     const modal = document.getElementById(modalId);
     modal.classList.add("show-modal");
@@ -196,47 +211,19 @@ const closeModal = (modalId) => {
 
 window.addEventListener("click", e => (e.target.classList.contains("modal-container")) ? closeModal(e.target.id) : false);
 
-(() => document.addEventListener("DOMContentLoaded", () => {
-    if (postService.posts.length === 0) {
-        showNoPostsBox();
-    } else {
-        for (let post of postService.posts) {
-            renderPost(post);
+// todo - fix: why isn't it working? 
+window.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        const modals = document.getElementsByClassName("modal-container");
+        for (let modal of modals) {
+            if (modal.classList.contains("show-modal")) closeModal(modal.id);
         }
     }
+});
+
+(() => document.addEventListener("DOMContentLoaded", () => {
+    if (postService.posts.length === 0) showNoPostsBox();
+    else
+        for (let post of postService.posts) renderPost(post);
+
 }))();
-
-//! test code
-
-// change variable to false to disable test data
-const TESTING = false;
-// mock data
-const addTestPosts = () => {
-    const p1 = {
-        title: "First Post",
-        body: "First post content.",
-        attachments: null
-    };
-
-    const p2 = {
-        title: "Second Post",
-        body: "Second post content.",
-        attachments: null
-    };
-
-    const p3 = {
-        title: "Third Post",
-        body: "Third post content.",
-        attachments: null
-    };
-
-    postService.createPost(p1);
-    postService.createPost(p2);
-    postService.createPost(p3);
-}
-
-if (TESTING && postService.posts.length === 0) {
-    addTestPosts();
-}
-
-//! end test code
