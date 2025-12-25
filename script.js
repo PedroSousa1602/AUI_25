@@ -136,15 +136,16 @@ const renderPost = (post) => {
 
     // post footer
     // todo: style post-footer
+    moment.locale('pt-br');
     const postFooterDiv = document.createElement("div");
     postFooterDiv.setAttribute("class", "post-footer");
     const pubDateSpan = document.createElement("span");
-    pubDateSpan.textContent = `Publicado em: ${new Date(post.pubDate).toLocaleDateString("pt-PT")} às ${new Date(post.pubDate).toLocaleTimeString("pt-PT", { hour: '2-digit', minute: '2-digit' })}`;
+    pubDateSpan.textContent = `Publicado ${moment(post.pubDate).fromNow()}`;
     postFooterDiv.appendChild(pubDateSpan);
 
     if (post.lastEdited) {
         const lastEditedSpan = document.createElement("span");
-        lastEditedSpan.textContent = ` | Última edição: ${new Date(post.lastEdited).toLocaleDateString("pt-PT")} às ${new Date(post.lastEdited).toLocaleTimeString("pt-PT", { hour: '2-digit', minute: '2-digit' })}`;
+        lastEditedSpan.textContent = ` | Última edição ${moment(post.lastEdited).fromNow()}`;
         postFooterDiv.appendChild(lastEditedSpan);
     }
 
