@@ -127,6 +127,53 @@ header {
     gap: 10px;
 }
 
+.post-footer span {
+    display: grid;
+    text-align: right;
+    color:#505050;
+    font-size: 11px;
+
+}
+
+.cancel-btn, .confirm-btn {
+    transform: translateX(260px);
+}
+
+.cancel-btn{
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    transform: translateX(240px);
+}
+
+.confirm-btn{
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #ca2323;
+    padding: 12px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.confirm-btn:hover{
+
+    background-color: #ac1d1d;
+}
+
+.close-btn2 {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    transform: translateX(380px);
+    cursor: pointer;
+    color: #000000;
+}
+
 .edit-btn, .delete-btn {
     background: transparent;
     border: none;
