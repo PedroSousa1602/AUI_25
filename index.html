@@ -38,7 +38,6 @@
                         <label for="title">Título da publicação</label><br>
                         <input type="text" id="title" name="title" class="form-input" required>
                         <br><br>
-
                         <label for="content">Conteúdo da publicação</label><br>
                         <div class="textarea-container"><textarea id="content" name="content" class="form-input"
                                 required></textarea></div>
@@ -62,8 +61,28 @@
         </div>
     </div>
 
-    
-    
+    <div class="modal-container" id="edit-post-modal">
+        <div class="modal">
+            <button class="close-btn" onclick="closeModal('edit-post-modal')">X</button>
+            <div>
+                <h1 class="modal-title">Editar Publicação</h1>
+                <form class="modal-form" id="post-edit-modal" onsubmit="handleEditPostFormSubmit(event)">
+                    <div>
+                        <label for="id"></label>
+                        <input type="hidden" id="id" name="id" class="form-input">
+                        <label for="title">Título da publicação</label><br>
+                        <input type="text" id="title" name="title" class="form-input" required>
+                        <br><br>
+                        <label for="content">Conteúdo da publicação</label><br>
+                        <div class="textarea-container"><textarea id="content" name="content" class="form-input"
+                                required></textarea></div>
+                    </div>
+                    <input type="submit" value="Editar publicação" class="submit-btn">
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

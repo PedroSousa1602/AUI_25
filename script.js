@@ -3,6 +3,7 @@ class Post {
     pubDate;
     title;
     body;
+    lastEdited;
     attachments;
 
     constructor(id, title, body, attachments) {
@@ -10,6 +11,7 @@ class Post {
         this.pubDate = new Date();
         this.title = title;
         this.body = body;
+        this.lastEdited = null;
         this.attachments = attachments;
     }
 
@@ -25,6 +27,39 @@ class Post {
 class PostService {
     posts = JSON.parse(localStorage.getItem("posts-list")) || [];
 
+    createPost(postDto) {
+        if (!this.isPostDtoValid(postDto)) return;
+
+        this.posts.length == 0 ? postDto.id = 1 : postDto.id = this.posts.at(-1).id + 1;
+        const newPost = new Post(postDto.id, postDto.title, postDto.body, postDto.attachments);
+        this.posts.push(newPost);
+        localStorage.setItem("posts-list", JSON.stringify(this.posts));
+        console.log("Post created successfully.\n", newPost);
+    }
+
+    deletePost(postDto) {
+        this.posts = this.posts.filter(p => p.id != postDto.id);
+        localStorage.setItem("posts-list", JSON.stringify(this.posts));
+        console.log("Post deleted successfully.\n");
+    }
+
+    updatePost(postDto) {
+        if (!this.isPostDtoValid(postDto)) return;
+
+        let saved = this.posts.find(p => p.id == postDto.id);
+        if (saved) {
+            saved.title = postDto.title;
+            saved.body = postDto.body;
+            saved.attachments = postDto.attachments;
+            saved.lastEdited = new Date();
+            this.posts[postDto.id - 1] = saved;
+            localStorage.setItem("posts-list", JSON.stringify(this.posts));
+            console.log("Post edited successfully.\n", saved);
+        } else {
+            console.log("Post not found.\n");
+        }
+    }
+
     isPostDtoValid(postDto) {
         if (!(postDto.title && postDto.body)) {
             console.log("Post's title and body cannot be empty.");
@@ -37,22 +72,6 @@ class PostService {
         }
         return (postDto.title && postDto.body);
     };
-
-    createPost(postDto) {
-        if (this.isPostDtoValid(postDto)) {
-            this.posts.length === 0 ? postDto.id = 1 : postDto.id = this.posts.at(-1).id + 1;
-            const newPost = new Post(postDto.id, postDto.title, postDto.body, postDto.attachments);
-            this.posts.push(newPost);
-            localStorage.setItem("posts-list", JSON.stringify(this.posts));
-            console.log("Post created successfully.\n", newPost);
-        }
-    }
-
-    deletePost(post) {
-        this.posts = this.posts.filter(p => p.id !== post.id);
-        localStorage.setItem("posts-list", JSON.stringify(this.posts));
-        console.log("Post deleted successfully.\n");
-    }
 }
 
 const postService = new PostService();
@@ -89,11 +108,11 @@ const renderPost = (post) => {
 
     const editBtn = document.createElement("button");
     editBtn.setAttribute("class", "edit-btn");
-    editBtn.onclick = () => alert("Edit post feature coming soon!");
+    editBtn.onclick = () => handleEditPostBtn(post);
 
     const deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("class", "delete-btn");
-    deleteBtn.onclick = () => { handleDeletePostBtn(post); };
+    deleteBtn.onclick = () => handleDeletePostBtn(post);
 
     postActionsDiv.append(editBtn, deleteBtn);
     postHeaderDiv.append(title, postActionsDiv);
@@ -115,22 +134,6 @@ const renderPost = (post) => {
     postDiv.appendChild(contentDiv);
 };
 
-const handleCreatePostFormSubmit = (event) => {
-    event.preventDefault();
-
-    const data = new FormData(event.target);
-
-    const postDto = {
-        title: data.get("title"),
-        body: data.get("content"),
-        attachments: null
-    };
-
-    postService.createPost(postDto);
-    closeModal('create-post-modal');
-    window.location.reload();
-}
-
 const handleDeletePostBtn = (post) => {
     showModal("delete-post-modal");
 
@@ -141,6 +144,45 @@ const handleDeletePostBtn = (post) => {
         window.location.reload();
     };
 }
+
+const handleCreatePostFormSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const postDto = {
+        title: data.get("title"),
+        body: data.get("content"),
+        attachments: data.get("attachments") ? data.get("attachments") : null
+    };
+
+    postService.createPost(postDto);
+    closeModal('create-post-modal');
+    window.location.reload();
+    return postDto;
+}
+
+const handleEditPostBtn = (post) => {
+    showModal("edit-post-modal");
+
+    const form = document.getElementById("post-edit-modal");
+    form.id.value = post.id;
+    form.title.value = post.title;
+    form.content.value = post.body;
+}
+
+const handleEditPostFormSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const postDto = {
+        id: parseInt(data.get("id")),
+        title: data.get("title"),
+        body: data.get("content"),
+        attachments: data.get("attachments") ? data.get("attachments") : null
+    };
+    postService.updatePost(postDto);
+    closeModal("edit-post-modal");
+    window.location.reload();
+}
+
 
 const showModal = (modalId) => {
     const modal = document.getElementById(modalId);
