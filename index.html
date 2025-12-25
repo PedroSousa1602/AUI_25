@@ -11,12 +11,12 @@
         integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
-    <title>Blog Pessoal</title>
+    <title>Dear Me</title>
 </head>
 
 <body>
     <header>
-        <div class="title">Blog Pessoal</div>
+        <div class="title">Dear Me</div>
         <div class="search">
             <form action="/index.html" method="GET">
                 <label for="site-search" class="sr-only"></label>
@@ -33,7 +33,7 @@
 
     <div class="modal-container" id="create-post-modal">
         <div class="modal">
-            <button class="close-btn" onclick="closeModal('create-post-modal')">X</button>
+            <button class="close-btn" onclick="closeModal('create-post-modal')"><span class="icon"></span></button>
             <div>
                 <h1 class="modal-title">Nova Publicação</h1>
                 <form class="modal-form" id="post-modal" onsubmit="handleCreatePostFormSubmit(event)">
@@ -54,7 +54,7 @@
     <!-- todo: style modal buttons -->
     <div class="modal-container" id="delete-post-modal">
         <div class="modal">
-            <button class="close-btn2" onclick="closeModal('delete-post-modal')">X</button>
+            <button class="close-btn" onclick="closeModal('delete-post-modal')"><span class="icon"></span></button>
             <div>
                 <h1 class="modal-title">Confirmar exclusão</h1>
                 <p>Tem certeza que deseja excluir esta publicação? Essa ação não pode ser desfeita.</p>
@@ -66,7 +66,7 @@
 
     <div class="modal-container" id="edit-post-modal">
         <div class="modal">
-            <button class="close-btn" onclick="closeModal('edit-post-modal')">X</button>
+            <button class="close-btn" onclick="closeModal('edit-post-modal')"><span class="icon"></span></button>
             <div>
                 <h1 class="modal-title">Editar Publicação</h1>
                 <form class="modal-form" id="post-edit-modal" onsubmit="handleEditPostFormSubmit(event)">

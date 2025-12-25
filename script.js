@@ -145,7 +145,7 @@ const renderPost = (post) => {
 
     if (post.lastEdited) {
         const lastEditedSpan = document.createElement("span");
-        lastEditedSpan.textContent = ` | Última edição ${moment(post.lastEdited).fromNow()}`;
+        lastEditedSpan.textContent = `\nÚltima edição ${moment(post.lastEdited).fromNow()}`;
         postFooterDiv.appendChild(lastEditedSpan);
     }
 
