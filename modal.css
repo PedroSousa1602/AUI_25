@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+* {
+    font-family: "Ubuntu", sans-serif;
+}
+
 :root{
     --modal-duration: 1s;
 }
@@ -108,5 +115,54 @@ textarea {
     border-radius: 5px;
     line-height: 1.3; 
     padding: 8px; 
+}
+
+#attachment {
+    border: none;
+    pointer-events: none;
+}
+
+#attachment::file-selector-button {
+    pointer-events: auto;
+    position: relative;
+    left: -8px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    background: #2125292d; 
+    color: #5f5e5e;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#attachment::file-selector-button:hover {
+    background: #21252949; 
+    color: #555555;
+}
+
+#attachment-preview {
+        button {
+        position: relative;
+        bottom: 20px;
+        left: 8px;
+        font-size: 12px;
+        font-weight: bold;
+        border: none;
+        background: #2125292d; 
+        color: #5f5e5e;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button:hover {
+            background: #21252949; 
+            color: #555555;       /* Texto mais nítido */
+        }
+}
+
+#attachment-img {
+    max-height: 50px;
 }
 

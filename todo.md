@@ -7,4 +7,4 @@
 - [ ] Add search by date
 - [ ] Create script for search bar
 - [ ] Create confirmation feedback after post creation or deletion?
-- [ ] P - Style post's image and image preview when editing post
+- [x] P - Style post's image and image preview when editing post
