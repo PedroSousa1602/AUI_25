@@ -22,6 +22,10 @@
     animation: fadeIn var(--modal-duration) ease;
 }
 
+.modal-form label{
+    font-size: 15px;
+}
+
 .modal {
     background-color: rgb(255, 255, 255); 
     padding: 25px; 
@@ -35,7 +39,8 @@
 
 .modal h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    font-size: 28px;
 }
 
 .modal-form div {
@@ -86,6 +91,7 @@
     color: #fff;
     cursor: pointer;
     padding: 10px 30px;
+    font-size: 15px;
 }
 
 .modal-container .submit-btn:hover {
