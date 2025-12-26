@@ -203,9 +203,10 @@ const handleEditPostBtn = (post) => {
     form.id.value = post.id;
     form.title.value = post.title;
     form.content.value = post.body;
+    form.elements["curr-attachment-b64str"].value = post.attachment;
 
     const preview = document.getElementById("attachment-preview");
-    const img = document.getElementById("attachment-img");
+    const img = document.getElementById("curr-attachment");
 
     if (post.attachment) {
         img.src = post.attachment;
@@ -215,6 +216,7 @@ const handleEditPostBtn = (post) => {
     document.getElementById("remove-attachment-btn").onclick = () => {
         img.src = "";
         preview.hidden = true;
+        form.elements["curr-attachment-b64str"].value = null;
     };
 };
 
@@ -225,7 +227,7 @@ const handleEditPostFormSubmit = (event) => {
         id: parseInt(data.get("id")),
         title: data.get("title"),
         body: data.get("content"),
-        attachment: null
+        attachment: data.get("curr-attachment-b64str")
     };
 
     const file = data.get("attachment");

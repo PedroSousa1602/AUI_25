@@ -126,7 +126,8 @@ header {
 }
 
 .post p {
-    font-size: 20px;
+    font-size: 17px;
+    line-height: 1.75;
 }
 
 .post-actions {
