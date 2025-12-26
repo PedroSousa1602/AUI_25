@@ -4,15 +4,15 @@ class Post {
     title;
     body;
     lastEdited;
-    attachments;
+    attachment;
 
-    constructor(id, title, body, attachments) {
+    constructor(id, title, body, attachment) {
         this.id = id;
         this.pubDate = new Date();
         this.title = title;
         this.body = body;
         this.lastEdited = null;
-        this.attachments = attachments;
+        this.attachment = attachment;
     }
 
     toString() {
@@ -21,7 +21,7 @@ class Post {
             Body: ${this.body}\n
             Published on: ${this.pubDate}\n
             ${this.lastEdited ? `Last Edited: ${this.lastEdited}` : ''}\n
-            ${this.attachments ? `Attachments: ${this.attachments}\n` : ''}`;
+            ${this.attachment ? `attachment: ${this.attachment}\n` : ''}`;
     }
 }
 
@@ -32,7 +32,7 @@ class PostService {
         if (!this.isPostDtoValid(postDto)) return;
 
         this.posts.length == 0 ? postDto.id = 1 : postDto.id = this.posts.at(-1).id + 1;
-        const newPost = new Post(postDto.id, postDto.title, postDto.body, postDto.attachments);
+        const newPost = new Post(postDto.id, postDto.title, postDto.body, postDto.attachment);
         this.posts.push(newPost);
         localStorage.setItem("posts-list", JSON.stringify(this.posts));
         console.log("Post created successfully.\n", newPost);
@@ -51,7 +51,7 @@ class PostService {
         if (saved) {
             saved.title = postDto.title;
             saved.body = postDto.body;
-            saved.attachments = postDto.attachments;
+            saved.attachment = postDto.attachment;
             saved.lastEdited = new Date();
             this.posts[postDto.id - 1] = saved;
             localStorage.setItem("posts-list", JSON.stringify(this.posts));
@@ -77,6 +77,7 @@ class PostService {
 
 const postService = new PostService();
 
+// todo: transform into HTML and toggle visibility
 const showNoPostsBox = () => {
     let noPostsDiv = document.getElementById("no-posts");
     noPostsDiv.setAttribute("class", "no-posts");
@@ -84,7 +85,7 @@ const showNoPostsBox = () => {
     iconDiv.setAttribute("class", "np-icon");
     noPostsDiv.appendChild(iconDiv);
     const noPublicationsMsg = document.createElement("p");
-    noPublicationsMsg.textContent = "Ainda não há publicações.";
+    noPublicationsMsg.textContent = "Ainda não há publicações";
     noPostsDiv.appendChild(noPublicationsMsg);
 };
 
@@ -119,10 +120,12 @@ const renderPost = (post) => {
     postHeaderDiv.append(title, postActionsDiv);
 
     // post's image (if any)
-    //todo: feature to upload attachments not implemented yet
-    if (post.attachments) {
+    if (post.attachment) {
         const imgBoxDiv = document.createElement("div");
         imgBoxDiv.setAttribute("class", "img-box");
+        const img = document.createElement("img");
+        img.src = post.attachment;
+        imgBoxDiv.appendChild(img);
         postDiv.appendChild(imgBoxDiv);
     }
 
@@ -165,26 +168,55 @@ const handleDeletePostBtn = (post) => {
 
 const handleCreatePostFormSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.target);
     const postDto = {
         title: data.get("title"),
         body: data.get("content"),
-        attachments: data.get("attachments") ? data.get("attachments") : null
+        attachment: null
     };
 
-    postService.createPost(postDto);
-    closeModal('create-post-modal');
-    window.location.reload();
-    return postDto;
-}
+    const file = data.get("attachment");
+    if (file && file.size > 0) {
+        const fr = new FileReader();
+
+        fr.onload = () => {
+            postDto.attachment = fr.result;
+            postService.createPost(postDto);
+            closeModal("create-post-modal");
+            window.location.reload();
+        };
+
+        fr.readAsDataURL(file);
+    } else {
+        postService.createPost(postDto);
+        closeModal("create-post-modal");
+        window.location.reload();
+    }
+};
+
 
 const handleEditPostBtn = (post) => {
     showModal("edit-post-modal");
+
     const form = document.getElementById("post-edit-modal");
     form.id.value = post.id;
     form.title.value = post.title;
     form.content.value = post.body;
-}
+
+    const preview = document.getElementById("attachment-preview");
+    const img = document.getElementById("attachment-img");
+
+    if (post.attachment) {
+        img.src = post.attachment;
+        preview.hidden = false;
+    }
+
+    document.getElementById("remove-attachment-btn").onclick = () => {
+        img.src = "";
+        preview.hidden = true;
+    };
+};
 
 const handleEditPostFormSubmit = (event) => {
     event.preventDefault();
@@ -193,11 +225,26 @@ const handleEditPostFormSubmit = (event) => {
         id: parseInt(data.get("id")),
         title: data.get("title"),
         body: data.get("content"),
-        attachments: data.get("attachments") ? data.get("attachments") : null
+        attachment: null
     };
-    postService.updatePost(postDto);
-    closeModal("edit-post-modal");
-    window.location.reload();
+
+    const file = data.get("attachment");
+    if (file && file.size > 0) {
+        const fr = new FileReader();
+
+        fr.onload = () => {
+            postDto.attachment = fr.result;
+            postService.updatePost(postDto);
+            closeModal("edit-post-modal");
+            window.location.reload();
+        };
+
+        fr.readAsDataURL(file);
+    } else {
+        postService.updatePost(postDto);
+        closeModal("edit-post-modal");
+        window.location.reload();
+    }
 }
 
 const showModal = (modalId) => {

@@ -2,8 +2,9 @@
 - [x] Post must show how long ago the publication was done
 - [x] P - Change icon
 - [x] P - Style post footer (post creation and update date/time)
-- [ ] Add image attachment
+- [x] P - Try different color schemes
+- [x] Add image attachment
 - [ ] Add search by date
 - [ ] Create script for search bar
 - [ ] Create confirmation feedback after post creation or deletion?
-- [ ] P - Try different color schemes
+- [ ] P - Style post's image and image preview when editing post

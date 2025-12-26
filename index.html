@@ -44,6 +44,8 @@
                         <label for="content">Conteúdo da publicação</label><br>
                         <div class="textarea-container"><textarea id="content" name="content" class="form-input"
                                 required></textarea></div>
+                        <label for="attachment">Adicionar capa</label>
+                        <input type="file" id="attachment" name="attachment" accept="image/*">
                     </div>
                     <input type="submit" value="Criar publicação" class="submit-btn">
                 </form>
@@ -51,7 +53,6 @@
         </div>
     </div>
 
-    <!-- todo: style modal buttons -->
     <div class="modal-container" id="delete-post-modal">
         <div class="modal">
             <button class="close-btn" onclick="closeModal('delete-post-modal')"><span class="icon"></span></button>
@@ -79,6 +80,13 @@
                         <label for="content">Conteúdo da publicação</label><br>
                         <div class="textarea-container"><textarea id="content" name="content" class="form-input"
                                 required></textarea></div>
+                        <div id="attachment-preview" hidden>
+                            <!-- todo: style attachment preview -->
+                            <img id="attachment-img" alt="Capa atual" style="max-height: 40px;">
+                            <button type="button" id="remove-attachment-btn">Remover capa atual</button>
+                        </div>
+                        <label for="attachment">Alterar capa</label>
+                        <input type="file" id="attachment" name="attachment" accept="image/*">
                     </div>
                     <input type="submit" value="Editar publicação" class="submit-btn">
                 </form>
