@@ -1,7 +1,9 @@
 - [x] Post creation must be a popup window
-- [ ] Post must show how long ago the publication was done
+- [x] Post must show how long ago the publication was done
+- [x] P - Change icon
+- [x] P - Style post footer (post creation and update date/time)
+- [ ] Add image attachment
+- [ ] Add search by date
 - [ ] Create script for search bar
-- [ ] Create confirmation feedback after post creation or deletion.
-- [ ] Change icon color to green
-- [ ] Style post footer (post creation and update date/time)
-- [ ] 
+- [ ] Create confirmation feedback after post creation or deletion?
+- [ ] P - Try different color schemes
