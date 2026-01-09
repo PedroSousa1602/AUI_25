@@ -1,10 +1,25 @@
-- [x] Post creation must be a popup window
-- [x] Post must show how long ago the publication was done
-- [x] P - Change icon
-- [x] P - Style post footer (post creation and update date/time)
-- [x] P - Try different color schemes
-- [x] Add image attachment
-- [ ] Add search by date
+Alexandre:
+
 - [ ] Create script for search bar
-- [ ] Create confirmation feedback after post creation or deletion?
-- [x] P - Style post's image and image preview when editing post
+- [ ] Add search by date
+- [ ] Refactor script
+- [ ] Create a proper backend with database
+- [ ] Modularize CSS
+
+Pedro:
+- [ ] Modularize CSS
+- [ ] Adjust image box
+- [ ] Create home page
+- [ ] Create dark theme
+- [ ] Feedback after post creation and deletion
+- [ ] Create contact information 
+
+Yuri:
+
+- [ ] 
+ 
+Daniel:
+
+- [ ] Perform usability testing
+
+
